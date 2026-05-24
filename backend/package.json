@@ -1,0 +1,24 @@
+{
+  "name": "employee-leave-system-backend",
+  "version": "1.0.0",
+  "description": "ELMS backend with Express and MySQL",
+  "main": "src/server.js",
+  "type": "module",
+  "scripts": {
+    "dev": "nodemon src/server.js",
+    "start": "node src/server.js",
+    "seed": "node src/seed.js"
+  },
+  "dependencies": {
+    "bcrypt": "^6.0.0",
+    "cors": "latest",
+    "dotenv": "latest",
+    "express": "latest",
+    "jsonwebtoken": "latest",
+    "morgan": "latest",
+    "mysql2": "latest"
+  },
+  "devDependencies": {
+    "nodemon": "latest"
+  }
+}
