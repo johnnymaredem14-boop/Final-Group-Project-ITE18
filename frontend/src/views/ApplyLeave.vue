@@ -114,10 +114,6 @@ const computedDays = computed(() => {
 
 const isPastDate = dateValue => dateValue < today
 
-// Returns true if [a_start, a_end] overlaps with [b_start, b_end]
-const datesOverlap = (aStart, aEnd, bStart, bEnd) =>
-  aStart <= bEnd && aEnd >= bStart
-
 const submitLeave = async () => {
   errorMessage.value = ''
 
@@ -146,41 +142,19 @@ const submitLeave = async () => {
     return
   }
 
-  // ── Frontend Check 1: Overlapping active/pending leave ──
+  // ── Check: Block same leave type with the same start or end date ──
   const existingRequests = leaveStore.myLeaveRequests || []
 
-  const hasOverlap = existingRequests.some(req =>
+  const hasSameTypeAndDate = existingRequests.some(req =>
     ['Pending', 'Approved'].includes(req.status) &&
-    datesOverlap(form.startDate, form.endDate, req.startDate, req.endDate)
-  )
-
-  if (hasOverlap) {
-    errorMessage.value = 'You already have an active or pending leave that overlaps with the selected dates.'
-    return
-  }
-
-  // ── Frontend Check 2: Exact duplicate ──
-  const isDuplicate = existingRequests.some(req =>
     req.leaveType === form.leaveType &&
-    req.startDate === form.startDate &&
-    req.endDate === form.endDate
+    (req.startDate === form.startDate || req.endDate === form.endDate)
   )
 
-  if (isDuplicate) {
-    errorMessage.value = 'You have already submitted the exact same leave request.'
+  if (hasSameTypeAndDate) {
+    errorMessage.value = 'You already have a pending or approved leave with the same type and date.'
     return
   }
-
-  // ── Frontend Check 3: Allow only one request at a time ──
-const hasExistingRequest = existingRequests.some(req =>
-  ['Pending', 'Approved'].includes(req.status)
-)
-
-if (hasExistingRequest) {
-  errorMessage.value =
-    'You already have an existing leave request. Please wait until it is completed or rejected before submitting another leave.'
-  return
-}
 
   try {
     await leaveStore.addLeaveRequest({
