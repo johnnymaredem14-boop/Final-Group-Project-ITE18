@@ -35,7 +35,7 @@
       </p>
       <p class="note">
         <br />
-        © 2026 ELMS Version 1.0.0 | Developed by Johnny, Lloyd, Leo
+        © 2026 ELMS Version 1.0.0 | Developed by Cruiz, Edem, Villarias
       </p>
     </div>
   </div>
