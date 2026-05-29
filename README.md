@@ -13,6 +13,7 @@ This version uses Vue.js frontend, Express backend, and MySQL database.
 ```bash
 cd backend
 npm install
+npm run seed
 npm run dev
 ```
 
