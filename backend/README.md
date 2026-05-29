@@ -4,7 +4,7 @@
 
 ### 1. Import the database schema
 Open phpMyAdmin → SQL tab → paste and run `database/schema.sql`.  
-This creates the `elms_db` database, all tables, departments, and leave types.
+This creates the `elms_db_1` database, all tables, departments, and leave types.
 
 ### 2. Install dependencies
 ```bash
