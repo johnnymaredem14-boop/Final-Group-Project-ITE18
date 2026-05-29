@@ -1,8 +1,3 @@
-/**
- * Run this ONCE after `npm install` to see hashed versions of seed passwords.
- * Usage: node scripts/hashPasswords.js
- * Then copy the hashes into schema.sql INSERT statements.
- */
 import bcrypt from 'bcrypt'
 
 const SALT_ROUNDS = 10
